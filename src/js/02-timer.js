@@ -26,8 +26,10 @@ const options = {
       const timeDifference = selectedDates[0].getTime() - currentDate.getTime();
       
       if (timeDifference > 0) {
-        startButton.disabled = false;
-        timerTime = timeDifference;
+        if (!timerIntervalId) {
+          startButton.disabled = false;
+          timerTime = timeDifference;
+        }
       } else {
         startButton.disabled = true;
         Notiflix.Notify.failure('Please choose a date in the future');
